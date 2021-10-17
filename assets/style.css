@@ -21,7 +21,7 @@
    
 }
 
-.btn {
+#search-btn {
     margin: 5px;
     width: 220px;
     background-color: blue;
@@ -55,7 +55,7 @@
     margin: 8px;
 }
 
-.city-list {
+.city-btn {
     background-color: grey;
     width: 210px;
     height: 30px;
