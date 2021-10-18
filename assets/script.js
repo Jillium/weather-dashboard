@@ -1,7 +1,6 @@
 var cityInputEl = document.querySelector(".input");
 var submitButton = document.querySelector("#search-btn");
-
-
+var currentCityEl = document.getElementById("current-city");
 
 
 
@@ -9,7 +8,6 @@ var submitButton = document.querySelector("#search-btn");
 // data from api call is dynamically added to page. Current selected city appears and icon appears with weather icon
 //temperature, wind, humidity and uv index are dynamically added. UV index background changes color based off of index level
 // 5 day forecast for selected city is dynamically added
-// button is created to recall selected city at a future time. 
 // current selected city is stored in localstorage 
 
 
@@ -21,8 +19,10 @@ var submitButtonHandler = function(event) {
     // if they entered a city 
     if (currentCity) {
         // this is running the getCity function 
-        getCity(currentCity);
+        getWeather(currentCity);
         cityInputEl.value = "";
+        currentCityEl.innerText = currentCity;
+        
         
     }
     // if they didn't enter a valid input
@@ -34,15 +34,14 @@ var submitButtonHandler = function(event) {
 
 
 // function to get selected city latitude and longitude info from api call 
-var getCity = function(currentCity) {
+var getWeather = function(currentCity) {
     // this variable allows user to select a city and creates the url to search for it 
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + currentCity + "&units=imperial&appid=096aee0d213daa88cdc744bebc199f14";
     // fetch request to get info from url we just created 
     fetch(apiUrl).then(function(response) {
     // takes response and changes it into data we can use 
     response.json().then(function(data) {
-        console.log(data.coord.lat);
-        console.log(data.coord.lon);
+        
         var lat = data.coord.lat;
         var lon = data.coord.lon;
 
@@ -50,11 +49,47 @@ var getCity = function(currentCity) {
 
         fetch(apiUrl2).then(function(response) {
             response.json().then(function(data) {
-                console.log(data);
-                console.log(data.current.temp);
-                console.log(data.current.wind_speed);
-                console.log(data.current.humidity);
-                console.log(data.current.uvi);
+
+                
+                
+                // weather icon
+                var icon= data.current.weather[0].icon;
+                var iconLink = "https://openweathermap.org/img/w/" + icon + ".png";
+                console.log(iconLink);
+                
+                
+                
+                
+                
+                // current temp added to html
+                var currentTempEl = document.getElementById("temp");
+                currentTempEl.textContent = "Temperature: " + data.current.temp + " Degrees";
+                
+                // wind speed
+                var currentWindEl = document.getElementById("wind");
+                currentWindEl.textContent = "Wind: " + data.current.wind_speed + " MPH"
+                
+                //humidity
+                var currentHumidityEl = document.getElementById("humidity");
+                currentHumidityEl.textContent = "Humidity: " + data.current.humidity + " %"
+                
+                // uv index
+                var uviEl = document.getElementById("uvi");
+                uviEl.textContent = "UV Index: " + data.current.uvi 
+
+                console.log(data.daily[0])
+
+                var tempEl = document.getElementById("day1temp");
+                tempEl.textContent = "Temp: " + data.daily[0].temp.day + " deg F"
+
+                var windEl = document.getElementById("day1wind");
+                windEl.textContent = "Wind: " + data.daily[0].wind_speed + " mph";
+
+                var humidEl = document.getElementById("day1humid");
+                humidEl.textContent = "Humidity: " + data.daily[0].humidity + " %"
+                
+                
+                
             })
         })
         
@@ -65,6 +100,11 @@ var getCity = function(currentCity) {
     
 
 };
+
+var displayWeather = function(getWeather) {
+
+   
+}
 
 
 
