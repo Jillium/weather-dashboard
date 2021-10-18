@@ -77,16 +77,57 @@ var getWeather = function(currentCity) {
                 var uviEl = document.getElementById("uvi");
                 uviEl.textContent = "UV Index: " + data.current.uvi 
 
-                console.log(data.daily[0])
+                
+                // display 5 day forecast to html
+                // day 1 
+                // add icon
+                var tempElOne = document.getElementById("day1temp");
+                tempElOne.textContent = "Temp: " + data.daily[0].temp.day + " deg F"
 
-                var tempEl = document.getElementById("day1temp");
-                tempEl.textContent = "Temp: " + data.daily[0].temp.day + " deg F"
+                var windElOne = document.getElementById("day1wind");
+                windElOne.textContent = "Wind: " + data.daily[0].wind_speed + " mph";
 
-                var windEl = document.getElementById("day1wind");
-                windEl.textContent = "Wind: " + data.daily[0].wind_speed + " mph";
+                var humidElOne = document.getElementById("day1humid");
+                humidElOne.textContent = "Humidity: " + data.daily[0].humidity + " %";
 
-                var humidEl = document.getElementById("day1humid");
-                humidEl.textContent = "Humidity: " + data.daily[0].humidity + " %"
+                // display day 2
+                var tempElTwo = document.getElementById("day2temp");
+                tempElTwo.textContent = "Temp: " + data.daily[1].temp.day + " deg F"
+
+                var windElTwo = document.getElementById("day2wind");
+                windElTwo.textContent = "Wind: " + data.daily[1].wind_speed + " mph";
+
+                var humidElTwo = document.getElementById("day2humid");
+                humidElTwo.textContent = "Humidity: " + data.daily[1].humidity + " %";
+
+                //display day 3
+                var tempElThree = document.getElementById("day3temp");
+                tempElThree.textContent = "Temp: " + data.daily[2].temp.day + " deg F"
+
+                var windElThree = document.getElementById("day3wind");
+                windElThree.textContent = "Wind: " + data.daily[2].wind_speed + " mph";
+
+                var humidElThree = document.getElementById("day3humid");
+                humidElThree.textContent = "Humidity: " + data.daily[2].humidity + " %";
+
+                // display day 4
+                var tempElFour = document.getElementById("day4temp");
+                tempElFour.textContent = "Temp: " + data.daily[3].temp.day + " deg F"
+
+                var windElFour = document.getElementById("day4wind");
+                windElFour.textContent = "Wind: " + data.daily[3].wind_speed + " mph";
+
+                var humidElFour = document.getElementById("day4humid");
+                humidElFour.textContent = "Humidity: " + data.daily[3].humidity + " %";
+
+                var tempElFive = document.getElementById("day5temp");
+                tempElFive.textContent = "Temp: " + data.daily[4].temp.day + " deg F"
+
+                var windElFive = document.getElementById("day5wind");
+                windElFive.textContent = "Wind: " + data.daily[4].wind_speed + " mph";
+
+                var humidElFive = document.getElementById("day5humid");
+                humidElFive.textContent = "Humidity: " + data.daily[4].humidity + " %";
                 
                 
                 
