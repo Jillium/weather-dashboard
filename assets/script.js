@@ -5,10 +5,12 @@ var currentCityEl = document.getElementById("current-city");
 
 
 
-// data from api call is dynamically added to page. Current selected city appears and icon appears with weather icon
-//temperature, wind, humidity and uv index are dynamically added. UV index background changes color based off of index level
-// 5 day forecast for selected city is dynamically added
+var savedCities = [];
+
+//  icon appears with weather icon
+//UV index background changes color based off of index level
 // current selected city is stored in localstorage 
+// stored cities can be clicked on to run again
 
 
 // function that runs when submit button is clicked 
@@ -50,13 +52,18 @@ var getWeather = function(currentCity) {
         fetch(apiUrl2).then(function(response) {
             response.json().then(function(data) {
 
+                var savedCityObject = {
+                    city: currentCity,
+                    url: apiUrl2
+                }
+                localStorage.setItem("savedCityObject", JSON.stringify(savedCityObject));
                 
                 
                 // weather icon
                 var icon= data.current.weather[0].icon;
-                var iconLink = "https://openweathermap.org/img/w/" + icon + ".png";
+                var iconLink = "https://openweathermap.org/img/w/" + data.current.weather[0].icon + ".png";
                 console.log(iconLink);
-                
+                // document.getElementById("icon").setAttribute("src", "iconLink");
                 
                 
                 
@@ -120,6 +127,7 @@ var getWeather = function(currentCity) {
                 var humidElFour = document.getElementById("day4humid");
                 humidElFour.textContent = "Humidity: " + data.daily[3].humidity + " %";
 
+                // display day 5
                 var tempElFive = document.getElementById("day5temp");
                 tempElFive.textContent = "Temp: " + data.daily[4].temp.day + " deg F"
 
@@ -137,18 +145,67 @@ var getWeather = function(currentCity) {
         
     });
     });
-    
-    
-
 };
 
-var displayWeather = function(getWeather) {
+    // var savedCityObject = localStorage.getItem("savedCityObject");
 
-   
-}
+    // if (savedCityObject) {
+    //     var savedCity = JSON.parse(localStorage.getItem("savedCityObject"));
+    //     var cityButton = document.createElement("button");
+    //     console.log(savedCity.city);
+    //     console.log(savedCity.url);
+    //     cityButton.innerText = savedCity.city;
+    //     document.body.appendChild(cityButton);
+    //     // var cityList = document.getElementById("#city-list");
+        
+        
+        
+    // }
+    
+    
+
+
+    var getSavedCities = function(savedCityObject) {
+        
+
+        var savedCityObject = localStorage.getItem("savedCityObject");
+        
+        
+        
+        if (savedCityObject) {
+            
+            
+        var savedCity = JSON.parse(localStorage.getItem("savedCityObject"));
+        console.log(savedCity.city);
+        console.log(savedCity.url);
+        }
+        
+        
+        
+        
+       
+        
+        
+        }
+
+    
+    
 
 
 
+
+        getSavedCities();
+
+
+        var savedCityEl = document.querySelector("#city-list");
+        var cityListEl = document.createElement("li");
+        cityListEl.className = "saved-city";
+        var savedCityButton = document.createElement("btn");
+        savedCityButton.textContent = "test two";
+        savedCityButton.className = "city-btn";
+        cityListEl.appendChild(savedCityButton);
+        savedCityEl.appendChild(cityListEl);
+       
 
 
 

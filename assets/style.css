@@ -67,7 +67,7 @@
     
 }
 
-#saved-cities {
+#city-list {
     list-style-type: none;
     
     
@@ -84,28 +84,38 @@
     margin: 10px;
     color: white;
     background-color: rgb(37, 37, 78);
+    height: 150px;
+    padding: 20px;
 }
 
 #day-2 {
     margin: 10px;
     color: white;
     background-color: rgb(37, 37, 78);
+    height: 150px;
+    padding: 20px;
 }
 
 #day-3 {
     margin: 10px;
     background-color: rgb(37, 37, 78);
     color: white;
+    height: 150px;
+    padding: 20px;
 }
 
 #day-4 {
     margin: 10px;
     background-color: rgb(37, 37, 78);
     color: white;
+    height: 150px;
+    padding: 20px;
 }
 
 #day-5 {
     margin: 10px;
     background-color: rgb(37, 37, 78);
     color: white;
+    height: 150px;
+    padding: 20px;
 }
