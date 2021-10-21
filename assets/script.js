@@ -3,8 +3,7 @@ var submitButton = document.querySelector("#search-btn");
 var currentCityEl = document.getElementById("current-city");
 // variable for the unordered list
 var savedCityEl = document.querySelector("#city-list");
-// variable for the button element
-var savedCityButton = document.createElement("btn");
+
 
 
 
@@ -15,7 +14,6 @@ var savedCities = [];
 
 //  icon appears with weather icon
 //UV index background changes color based off of index level
-// pull more than one city from local storage
 // stored cities can be clicked on to run again
 
 
@@ -36,7 +34,7 @@ var submitButtonHandler = function (event) {
     // if they didn't enter a valid input
     else {
         alert("please enter a city");
-        
+
     }
 
 }
@@ -63,11 +61,13 @@ var getWeather = function (currentCity) {
                         city: currentCity,
                         url: apiUrl2
                     }
-                    
-                    
-                    
-                    localStorage.setItem("savedCityObject", JSON.stringify(savedCityObject));
 
+
+
+
+                    savedCities.push(savedCityObject);
+                    console.log(savedCities);
+                    localStorage.setItem("savedCities", JSON.stringify(savedCities));
 
                     // weather icon
                     var icon = data.current.weather[0].icon;
@@ -162,45 +162,43 @@ var getWeather = function (currentCity) {
 
 
 
-var getSavedCities = function (savedCityObject) {
+var getSavedCities = function (savedCities) {
+
+    var savedCities = localStorage.getItem("savedCities");
+
+    if (savedCities) {
 
 
-    var savedCityObject = localStorage.getItem("savedCityObject");
+        var savedCity = JSON.parse(localStorage.getItem("savedCities"));
 
+        for (var i = 0; i < savedCity.length; i++) {
+            console.log(savedCity[i].city);
+            console.log(savedCity[i].url);
 
+            // variable for list items in unordered list
+            var cityListEl = document.createElement("li");
+            var savedCityButton = document.createElement("btn");
 
-    if (savedCityObject) {
+            // add class to button item
+            savedCityButton.className = "city-btn";
+            // add text to button item
+            savedCityButton.textContent = savedCity[i].city;
+            // append button to list item
 
+            cityListEl.appendChild(savedCityButton);
+            // append list item to unordered list
+            savedCityEl.appendChild(cityListEl);
 
-        var savedCity = JSON.parse(localStorage.getItem("savedCityObject"));
-        savedCities.push(savedCityObject);
-        console.log(savedCities);
-        
-        console.log(savedCity.city);
-        console.log(savedCity.url);
-
-        // variable for list items in unordered list
-        var cityListEl = document.createElement("li");
-        // add class to list item
-        // cityListEl.className = "saved-city";
-
-        // add class to button item
-        savedCityButton.className = "city-btn";
-        // add text to button item
-        savedCityButton.textContent = savedCity.city;
-        // append button to list item
-
-        cityListEl.appendChild(savedCityButton);
-        // append list item to unordered list
-        savedCityEl.appendChild(cityListEl);
+            
+        }
+        btns = document.getElementsByClassName("city-btn");
+        for (var j = 0; j < btns.length; j++) {
+            btns[j].addEventListener("click", function() {
+                console.log("i was clicked");
+                })
+            
+        }
     }
-
-
-
-
-
-
-
 }
 
 
@@ -226,10 +224,3 @@ submitButton.addEventListener("click", submitButtonHandler)
 
 
 
-// event listener for all of the city buttons after they are created 
-btns = document.getElementsByClassName("city-btn");
-for (var i = 0; i < btns.length; i++) {
-    btns[i].addEventListener("click", function () {
-        // if city and link are assigned change data on click
-    })
-}
