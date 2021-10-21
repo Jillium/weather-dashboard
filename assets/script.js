@@ -67,17 +67,14 @@ var getWeather = function (currentCity) {
 
                     savedCities.push(savedCityObject);
                     localStorage.setItem("savedCities", JSON.stringify(savedCities));
-
+                    // add selected city 
                     currentCityEl.textContent = currentCity;
 
                     // weather icon
                     var icon = data.current.weather[0].icon;
                     var iconLink = "https://openweathermap.org/img/w/" + data.current.weather[0].icon + ".png";
-                    console.log(iconLink);
-                    // document.getElementById("icon").setAttribute("src", "iconLink");
-
-
-
+                    
+                    currentCityEl.appendChild(document.createElement("img")).src = iconLink;
 
                     // current temp added to html
                     var currentTempEl = document.getElementById("temp");
@@ -99,6 +96,10 @@ var getWeather = function (currentCity) {
                     // display 5 day forecast to html
                     // day 1 
                     // add icon
+                    var icon1 = data.daily[0].weather.icon;
+                    var icon1Link = "https://openweathermap.org/img/w/" + data.daily[0].weather[0].icon + ".png";
+                    
+                    
                     var tempElOne = document.getElementById("day1temp");
                     tempElOne.textContent = "Temp: " + data.daily[0].temp.day + " deg F"
 
