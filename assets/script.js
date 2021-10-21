@@ -98,7 +98,10 @@ var getWeather = function (currentCity) {
                     // add icon
                     var icon1 = data.daily[0].weather.icon;
                     var icon1Link = "https://openweathermap.org/img/w/" + data.daily[0].weather[0].icon + ".png";
-                    
+                    console.log(icon1Link);
+                    // var forcastIcon = document.getElementById("forIcon1");
+
+                    // forcastIcon.appendChild(document.createElement("img")).src = icon1Link;
                     
                     var tempElOne = document.getElementById("day1temp");
                     tempElOne.textContent = "Temp: " + data.daily[0].temp.day + " deg F"
@@ -174,8 +177,7 @@ var getSavedCities = function (savedCities) {
         var savedCity = JSON.parse(localStorage.getItem("savedCities"));
 
         for (var i = 0; i < savedCity.length; i++) {
-            console.log(savedCity[i].city);
-            console.log(savedCity[i].url);
+            
 
             // variable for list items in unordered list
             var cityListEl = document.createElement("li");
@@ -196,8 +198,9 @@ var getSavedCities = function (savedCities) {
             // })
             btns = document.getElementsByClassName("city-btn");
             for (var j = 0; j < btns.length; j++) {
-                btns[j].addEventListener("click", function() {
-                    let current = event.target;
+                btns[j].addEventListener("click", function(event) {
+                    var current = event.target;
+                    console.log("I was clicked");
                     getWeather(current.textContent);
                     })
                 
@@ -225,12 +228,6 @@ submitButton.addEventListener("click", submitButtonHandler)
 
 
 
-// btns = document.getElementsByClassName("city-btn");
-// for (var j = 0; j < btns.length; j++) {
-//     btns[j].addEventListener("click", function() {
-//         console.log("i was clicked");
-//         })
-    
-// }
+
 
 
