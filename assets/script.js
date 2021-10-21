@@ -66,8 +66,9 @@ var getWeather = function (currentCity) {
 
 
                     savedCities.push(savedCityObject);
-                    console.log(savedCities);
                     localStorage.setItem("savedCities", JSON.stringify(savedCities));
+
+                    currentCityEl.textContent = currentCity;
 
                     // weather icon
                     var icon = data.current.weather[0].icon;
@@ -189,15 +190,21 @@ var getSavedCities = function (savedCities) {
             // append list item to unordered list
             savedCityEl.appendChild(cityListEl);
 
-            
+            // savedCityButton.addEventListener("click", function() {
+                
+            // })
+            btns = document.getElementsByClassName("city-btn");
+            for (var j = 0; j < btns.length; j++) {
+                btns[j].addEventListener("click", function() {
+                    let current = event.target;
+                    getWeather(current.textContent);
+                    })
+                
+            }
+       
         }
-        btns = document.getElementsByClassName("city-btn");
-        for (var j = 0; j < btns.length; j++) {
-            btns[j].addEventListener("click", function() {
-                console.log("i was clicked");
-                })
-            
-        }
+      
+     
     }
 }
 
@@ -212,15 +219,17 @@ getSavedCities();
 
 
 
-
-
-
-
 // event listener for the search button for city search 
 submitButton.addEventListener("click", submitButtonHandler)
 
 
 
-
+// btns = document.getElementsByClassName("city-btn");
+// for (var j = 0; j < btns.length; j++) {
+//     btns[j].addEventListener("click", function() {
+//         console.log("i was clicked");
+//         })
+    
+// }
 
 
