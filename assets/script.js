@@ -10,11 +10,12 @@ var savedCityEl = document.querySelector("#city-list");
 
 
 
+
 var savedCities = [];
 
 
-//  icon appears with weather icon in 5 day forecasts
-//UV index background changes color based off of index level
+// add dates to current weather and forecast
+// fix icon buttons creating a million icons
 
 
 
@@ -66,14 +67,27 @@ var getWeather = function (currentCity) {
                         url: apiUrl2
                     }
 
+                    var unixTimeStamp = data.current.dt
+                    var date = new Date(unixTimeStamp * 1000);
 
+                    var formattedDate = "Date: " +date.getDate()+
+                    "/"+(date.getMonth()+1)+
+                    "/"+date.getFullYear()
+                    console.log(formattedDate);
+
+                    
+                    
+
+                    
 
 
                     savedCities.push(savedCityObject);
                     localStorage.setItem("savedCities", JSON.stringify(savedCities));
                     // add selected city 
                     currentCityEl.textContent = currentCity;
-
+                    
+                    var dateEl = document.getElementById("date");
+                    dateEl.textContent = formattedDate;
                     // weather icon
                     var icon = data.current.weather[0].icon;
                     var iconLink = "https://openweathermap.org/img/w/" + data.current.weather[0].icon + ".png";
