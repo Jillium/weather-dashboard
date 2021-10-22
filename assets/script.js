@@ -59,21 +59,20 @@ var getWeather = function (currentCity) {
 
             fetch(apiUrl2).then(function (response) {
                 response.json().then(function (data) {
-                    console.log(apiUrl2);
-                    console.log(data.current.dt);
+                    
 
                     var savedCityObject = {
                         city: currentCity,
                         url: apiUrl2
                     }
-
+                    // convert unix timestamp to current date
                     var unixTimeStamp = data.current.dt
                     var date = new Date(unixTimeStamp * 1000);
 
                     var formattedDate = "Date: " +date.getDate()+
                     "/"+(date.getMonth()+1)+
                     "/"+date.getFullYear()
-                    console.log(formattedDate);
+                    
 
                     
                     
@@ -85,7 +84,7 @@ var getWeather = function (currentCity) {
                     localStorage.setItem("savedCities", JSON.stringify(savedCities));
                     // add selected city 
                     currentCityEl.textContent = currentCity;
-                    
+                    // add today's date
                     var dateEl = document.getElementById("date");
                     dateEl.textContent = formattedDate;
                     // weather icon
@@ -135,6 +134,13 @@ var getWeather = function (currentCity) {
 
                     forcastIcon.appendChild(document.createElement("img")).src = icon1Link;
                     
+                    var dateElOne = document.getElementById("day1date");
+                    var formattedDate1 = "Date: " +(date.getDate()+1)+
+                    "/"+(date.getMonth()+1)+
+                    "/"+date.getFullYear()
+                    dateElOne.textContent = formattedDate1;
+                    
+                    
                     var tempElOne = document.getElementById("day1temp");
                     tempElOne.textContent = "Temp: " + data.daily[0].temp.day + " deg F"
 
@@ -152,6 +158,12 @@ var getWeather = function (currentCity) {
                     var forcastIcon2 = document.getElementById("forIcon2");
 
                     forcastIcon2.appendChild(document.createElement("img")).src = icon2Link;
+
+                    var dateElTwo = document.getElementById("day2date");
+                    var formattedDate2 = "Date: " +(date.getDate()+2)+
+                    "/"+(date.getMonth()+1)+
+                    "/"+date.getFullYear()
+                    dateElTwo.textContent = formattedDate2;
 
                     var tempElTwo = document.getElementById("day2temp");
                     tempElTwo.textContent = "Temp: " + data.daily[1].temp.day + " deg F"
@@ -171,6 +183,12 @@ var getWeather = function (currentCity) {
 
                     forcastIcon3.appendChild(document.createElement("img")).src = icon3Link;
 
+                    var dateElThree = document.getElementById("day3date");
+                    var formattedDate3 = "Date: " +(date.getDate()+3)+
+                    "/"+(date.getMonth()+1)+
+                    "/"+date.getFullYear()
+                    dateElThree.textContent = formattedDate3;
+
                     var tempElThree = document.getElementById("day3temp");
                     tempElThree.textContent = "Temp: " + data.daily[2].temp.day + " deg F"
 
@@ -188,6 +206,13 @@ var getWeather = function (currentCity) {
                     var forcastIcon4 = document.getElementById("forIcon4");
 
                     forcastIcon4.appendChild(document.createElement("img")).src = icon4Link;
+
+                    var dateElFour = document.getElementById("day4date");
+                    var formattedDate4 = "Date: " +(date.getDate()+4)+
+                    "/"+(date.getMonth()+1)+
+                    "/"+date.getFullYear()
+                    dateElFour.textContent = formattedDate4;
+
                     var tempElFour = document.getElementById("day4temp");
                     tempElFour.textContent = "Temp: " + data.daily[3].temp.day + " deg F"
 
@@ -205,6 +230,13 @@ var getWeather = function (currentCity) {
                     var forcastIcon5 = document.getElementById("forIcon5");
 
                     forcastIcon5.appendChild(document.createElement("img")).src = icon5Link;
+
+                    var dateElFive = document.getElementById("day5date");
+                    var formattedDate5 = "Date: " +(date.getDate()+5)+
+                    "/"+(date.getMonth()+1)+
+                    "/"+date.getFullYear()
+                    dateElFive.textContent = formattedDate5;
+
                     var tempElFive = document.getElementById("day5temp");
                     tempElFive.textContent = "Temp: " + data.daily[4].temp.day + " deg F"
 
