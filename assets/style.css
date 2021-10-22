@@ -124,3 +124,19 @@
     width: 3px;
     height: 3px;
 }
+
+.favorable {
+background-color: green;
+color: white;
+width: 150px;
+}
+
+.moderate {
+background-color: orange;
+color: white;
+}
+
+.severe {
+background-color: red;
+color: white;
+}

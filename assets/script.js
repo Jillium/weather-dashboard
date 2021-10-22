@@ -9,12 +9,13 @@ var savedCityEl = document.querySelector("#city-list");
 
 
 
+
 var savedCities = [];
 
 
-//  icon appears with weather icon
+//  icon appears with weather icon in 5 day forecasts
 //UV index background changes color based off of index level
-// stored cities can be clicked on to run again
+
 
 
 // function that runs when submit button is clicked 
@@ -27,6 +28,7 @@ var submitButtonHandler = function (event) {
         // this is running the getCity function 
         getWeather(currentCity);
         cityInputEl.value = "";
+        
         currentCityEl.innerText = currentCity;
 
 
@@ -56,6 +58,8 @@ var getWeather = function (currentCity) {
 
             fetch(apiUrl2).then(function (response) {
                 response.json().then(function (data) {
+                    console.log(apiUrl2);
+                    console.log(data.current.dt);
 
                     var savedCityObject = {
                         city: currentCity,
@@ -90,18 +94,32 @@ var getWeather = function (currentCity) {
 
                     // uv index
                     var uviEl = document.getElementById("uvi");
+                    
+                    
+                    
                     uviEl.textContent = "UV Index: " + data.current.uvi
+
+                    if (data.current.uvi > 6) {
+                        uviEl.setAttribute("class", "severe");
+                    } 
+                    else if (data.current.uvi === 5) {
+                        uviEl.setAttribute("class", "moderate");
+                    }
+                    else if (data.current.uvi < 5) {
+                        uviEl.setAttribute("class", "favorable");
+                    }
 
 
                     // display 5 day forecast to html
                     // day 1 
                     // add icon
                     var icon1 = data.daily[0].weather.icon;
+                    
                     var icon1Link = "https://openweathermap.org/img/w/" + data.daily[0].weather[0].icon + ".png";
-                    console.log(icon1Link);
-                    // var forcastIcon = document.getElementById("forIcon1");
+                    
+                    var forcastIcon = document.getElementById("forIcon1");
 
-                    // forcastIcon.appendChild(document.createElement("img")).src = icon1Link;
+                    forcastIcon.appendChild(document.createElement("img")).src = icon1Link;
                     
                     var tempElOne = document.getElementById("day1temp");
                     tempElOne.textContent = "Temp: " + data.daily[0].temp.day + " deg F"
@@ -113,6 +131,14 @@ var getWeather = function (currentCity) {
                     humidElOne.textContent = "Humidity: " + data.daily[0].humidity + " %";
 
                     // display day 2
+                    var icon2 = data.daily[1].weather.icon;
+                    
+                    var icon2Link = "https://openweathermap.org/img/w/" + data.daily[1].weather[0].icon + ".png";
+                    
+                    var forcastIcon2 = document.getElementById("forIcon2");
+
+                    forcastIcon2.appendChild(document.createElement("img")).src = icon2Link;
+
                     var tempElTwo = document.getElementById("day2temp");
                     tempElTwo.textContent = "Temp: " + data.daily[1].temp.day + " deg F"
 
@@ -123,6 +149,14 @@ var getWeather = function (currentCity) {
                     humidElTwo.textContent = "Humidity: " + data.daily[1].humidity + " %";
 
                     //display day 3
+                    var icon3 = data.daily[2].weather.icon;
+                    
+                    var icon3Link = "https://openweathermap.org/img/w/" + data.daily[2].weather[0].icon + ".png";
+                    
+                    var forcastIcon3 = document.getElementById("forIcon3");
+
+                    forcastIcon3.appendChild(document.createElement("img")).src = icon3Link;
+
                     var tempElThree = document.getElementById("day3temp");
                     tempElThree.textContent = "Temp: " + data.daily[2].temp.day + " deg F"
 
@@ -133,6 +167,13 @@ var getWeather = function (currentCity) {
                     humidElThree.textContent = "Humidity: " + data.daily[2].humidity + " %";
 
                     // display day 4
+                    var icon4 = data.daily[3].weather.icon;
+                    
+                    var icon4Link = "https://openweathermap.org/img/w/" + data.daily[3].weather[0].icon + ".png";
+                    
+                    var forcastIcon4 = document.getElementById("forIcon4");
+
+                    forcastIcon4.appendChild(document.createElement("img")).src = icon4Link;
                     var tempElFour = document.getElementById("day4temp");
                     tempElFour.textContent = "Temp: " + data.daily[3].temp.day + " deg F"
 
@@ -143,6 +184,13 @@ var getWeather = function (currentCity) {
                     humidElFour.textContent = "Humidity: " + data.daily[3].humidity + " %";
 
                     // display day 5
+                    var icon5 = data.daily[4].weather.icon;
+                    
+                    var icon5Link = "https://openweathermap.org/img/w/" + data.daily[4].weather[0].icon + ".png";
+                    
+                    var forcastIcon5 = document.getElementById("forIcon5");
+
+                    forcastIcon5.appendChild(document.createElement("img")).src = icon5Link;
                     var tempElFive = document.getElementById("day5temp");
                     tempElFive.textContent = "Temp: " + data.daily[4].temp.day + " deg F"
 
@@ -193,13 +241,13 @@ var getSavedCities = function (savedCities) {
             // append list item to unordered list
             savedCityEl.appendChild(cityListEl);
 
-            // savedCityButton.addEventListener("click", function() {
-                
-            // })
+           
             btns = document.getElementsByClassName("city-btn");
             for (var j = 0; j < btns.length; j++) {
                 btns[j].addEventListener("click", function(event) {
+                    
                     var current = event.target;
+
                     console.log("I was clicked");
                     getWeather(current.textContent);
                     })
