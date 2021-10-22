@@ -1,7 +1,10 @@
+
+
+
 #dashboard-heading {
     text-align: center;
     background-color: blue;
-    background-image: linear-gradient(to right, blue , rgb(37, 37, 78));
+    background-image: linear-gradient(to right,rgb(207, 191, 102) , rgb(37, 37, 78));
     color: white;
     height: 75px;
     margin-bottom: 10px;
@@ -24,7 +27,7 @@
 #search-btn {
     margin: 5px;
     width: 220px;
-    background-color: blue;
+    background-color: rgb(207, 191, 102);
     color: white;
     border-radius: 5px;
 }
@@ -56,7 +59,7 @@
 }
 
 .city-btn {
-    background-color: grey;
+    background-color: rgb(207, 191, 102);
     width: 210px;
     height: 30px;
     text-align: center;
@@ -83,7 +86,7 @@
 #day-1 {
     margin: 10px;
     color: white;
-    background-color: rgb(37, 37, 78);
+    background-color: rgb(207, 191, 102);
     height: 150px;
     padding: 20px;
 }
@@ -91,14 +94,14 @@
 #day-2 {
     margin: 10px;
     color: white;
-    background-color: rgb(37, 37, 78);
+    background-color: rgb(207, 191, 102);
     height: 150px;
     padding: 20px;
 }
 
 #day-3 {
     margin: 10px;
-    background-color: rgb(37, 37, 78);
+    background-color: rgb(207, 191, 102);
     color: white;
     height: 150px;
     padding: 20px;
@@ -106,7 +109,7 @@
 
 #day-4 {
     margin: 10px;
-    background-color: rgb(37, 37, 78);
+    background-color: rgb(207, 191, 102);
     color: white;
     height: 150px;
     padding: 20px;
@@ -114,7 +117,7 @@
 
 #day-5 {
     margin: 10px;
-    background-color: rgb(37, 37, 78);
+    background-color: rgb(207, 191, 102);
     color: white;
     height: 150px;
     padding: 20px;

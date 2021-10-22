@@ -291,10 +291,11 @@ var getSavedCities = function (savedCities) {
             btns = document.getElementsByClassName("city-btn");
             for (var j = 0; j < btns.length; j++) {
                 btns[j].addEventListener("click", function(event) {
+                    console.log("i was clicked");
                     
                     var current = event.target;
 
-                    console.log("I was clicked");
+                    
                     getWeather(current.textContent);
                     })
                 
