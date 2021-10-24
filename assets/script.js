@@ -14,11 +14,11 @@ var savedCityEl = document.querySelector("#city-list");
 var savedCities = [];
 
 
-// add dates to current weather and forecast
+
 // fix icon buttons creating a million icons
 
 
-
+getSavedCities();
 // function that runs when submit button is clicked 
 var submitButtonHandler = function (event) {
     event.preventDefault();
@@ -29,6 +29,7 @@ var submitButtonHandler = function (event) {
         // this is running the getCity function 
         getWeather(currentCity);
         cityInputEl.value = "";
+        // getSavedCities();
         
         currentCityEl.innerText = currentCity;
 
@@ -63,7 +64,7 @@ var getWeather = function (currentCity) {
 
                     var savedCityObject = {
                         city: currentCity,
-                        url: apiUrl2
+                        // url: apiUrl2
                     }
                     // convert unix timestamp to current date
                     var unixTimeStamp = data.current.dt
@@ -131,7 +132,7 @@ var getWeather = function (currentCity) {
                     var icon1Link = "https://openweathermap.org/img/w/" + data.daily[0].weather[0].icon + ".png";
                     
                     var forcastIcon = document.getElementById("forIcon1");
-
+                    forcastIcon.innerText = "";
                     forcastIcon.appendChild(document.createElement("img")).src = icon1Link;
                     
                     var dateElOne = document.getElementById("day1date");
@@ -156,6 +157,7 @@ var getWeather = function (currentCity) {
                     var icon2Link = "https://openweathermap.org/img/w/" + data.daily[1].weather[0].icon + ".png";
                     
                     var forcastIcon2 = document.getElementById("forIcon2");
+                    forcastIcon2.innerText = "";
 
                     forcastIcon2.appendChild(document.createElement("img")).src = icon2Link;
 
@@ -180,6 +182,7 @@ var getWeather = function (currentCity) {
                     var icon3Link = "https://openweathermap.org/img/w/" + data.daily[2].weather[0].icon + ".png";
                     
                     var forcastIcon3 = document.getElementById("forIcon3");
+                    forcastIcon3.innerText = "";
 
                     forcastIcon3.appendChild(document.createElement("img")).src = icon3Link;
 
@@ -204,6 +207,7 @@ var getWeather = function (currentCity) {
                     var icon4Link = "https://openweathermap.org/img/w/" + data.daily[3].weather[0].icon + ".png";
                     
                     var forcastIcon4 = document.getElementById("forIcon4");
+                    forcastIcon4.innerText = "";
 
                     forcastIcon4.appendChild(document.createElement("img")).src = icon4Link;
 
@@ -228,6 +232,7 @@ var getWeather = function (currentCity) {
                     var icon5Link = "https://openweathermap.org/img/w/" + data.daily[4].weather[0].icon + ".png";
                     
                     var forcastIcon5 = document.getElementById("forIcon5");
+                    forcastIcon5.innerText = "";
 
                     forcastIcon5.appendChild(document.createElement("img")).src = icon5Link;
 
@@ -261,24 +266,27 @@ var getWeather = function (currentCity) {
 
 
 
-var getSavedCities = function (savedCities) {
+function getSavedCities() {
 
-    var savedCities = localStorage.getItem("savedCities");
+    var savedCity = JSON.parse(localStorage.getItem("savedCities"));
 
-    if (savedCities) {
+    if (savedCity) {
 
-
-        var savedCity = JSON.parse(localStorage.getItem("savedCities"));
+        // this is probably unnecessary
+        // var savedCity = JSON.parse(localStorage.getItem("savedCities"));
 
         for (var i = 0; i < savedCity.length; i++) {
             
 
             // variable for list items in unordered list
+            
             var cityListEl = document.createElement("li");
             var savedCityButton = document.createElement("btn");
-
+            
             // add class to button item
             savedCityButton.className = "city-btn";
+            savedCityButton.setAttribute("id", savedCity[i].city);
+            
             // add text to button item
             savedCityButton.textContent = savedCity[i].city;
             // append button to list item
@@ -287,39 +295,36 @@ var getSavedCities = function (savedCities) {
             // append list item to unordered list
             savedCityEl.appendChild(cityListEl);
 
-           
-            btns = document.getElementsByClassName("city-btn");
-            for (var j = 0; j < btns.length; j++) {
-                btns[j].addEventListener("click", function(event) {
-                    console.log("i was clicked");
-                    
-                    var current = event.target;
-
-                    
-                    getWeather(current.textContent);
-                    })
+            savedCityButton.addEventListener("click", function(event) {
+                console.log("i was clicked", this.id);
                 
-            }
+                // document.getElementById(this.id);
+                
+    
+                getWeather(this.id);
+    
+            })
+           
+      
        
         }
-      
+        
      
     }
 }
 
 
+  
 
 
 
 
-
-getSavedCities();
 
 
 
 
 // event listener for the search button for city search 
-submitButton.addEventListener("click", submitButtonHandler)
+submitButton.addEventListener("click", submitButtonHandler);
 
 
 

@@ -68,6 +68,7 @@
     border-radius: 5px;
     
     
+    
 }
 
 #city-list {
@@ -86,7 +87,7 @@
 #day-1 {
     margin: 10px;
     color: white;
-    background-color: rgb(207, 191, 102);
+    background-color: rgb(94, 93, 139);
     height: 150px;
     padding: 20px;
 }
@@ -94,14 +95,14 @@
 #day-2 {
     margin: 10px;
     color: white;
-    background-color: rgb(207, 191, 102);
+    background-color: rgb(94, 93, 139);
     height: 150px;
     padding: 20px;
 }
 
 #day-3 {
     margin: 10px;
-    background-color: rgb(207, 191, 102);
+    background-color: rgb(94, 93, 139);
     color: white;
     height: 150px;
     padding: 20px;
@@ -109,7 +110,7 @@
 
 #day-4 {
     margin: 10px;
-    background-color: rgb(207, 191, 102);
+    background-color: rgb(94, 93, 139);
     color: white;
     height: 150px;
     padding: 20px;
@@ -117,7 +118,7 @@
 
 #day-5 {
     margin: 10px;
-    background-color: rgb(207, 191, 102);
+    background-color: rgb(94, 93, 139);
     color: white;
     height: 150px;
     padding: 20px;
