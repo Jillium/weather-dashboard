@@ -15,7 +15,6 @@ var savedCities = [];
 
 
 
-// fix icon buttons creating a million icons
 
 
 getSavedCities();
@@ -272,8 +271,7 @@ function getSavedCities() {
 
     if (savedCity) {
 
-        // this is probably unnecessary
-        // var savedCity = JSON.parse(localStorage.getItem("savedCities"));
+        
 
         for (var i = 0; i < savedCity.length; i++) {
             
